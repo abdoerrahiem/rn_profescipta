@@ -40,7 +40,7 @@ export default function Home() {
     dispatch(getPopular(1));
     dispatch(getTopRated(1));
     dispatch(getUpcoming(1));
-  }, [dispatch]);
+  }, []);
 
   const onRefresh = () => {
     dispatch(getNowShowing(1));

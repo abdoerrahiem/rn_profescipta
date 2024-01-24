@@ -1,5 +1,50 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+export interface MovieDetails {
+  adult: boolean;
+  backdrop_path: boolean;
+  budget: number;
+  genres: {id: number; name: string}[];
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: {english_name: string; name: string}[];
+  status: string;
+  tagline: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  credits: {
+    cast: {
+      cast_id: number;
+      name: string;
+      profile_path: string;
+    }[];
+  };
+  videos: {
+    results: {
+      id: string;
+      key: string;
+      site: string;
+    }[];
+  };
+  release_dates: {
+    results: {
+      release_dates: {
+        certification: string;
+      }[];
+    }[];
+  };
+}
+
 export interface MovieItem {
   adult: boolean;
   backdrop_path: string;
@@ -32,6 +77,8 @@ interface InitialState {
   topRatedLoading: boolean;
   upcoming: MovieItem[];
   upcomingLoading: boolean;
+  movieDetails: MovieDetails | null;
+  movieDetailsLoading: boolean;
 }
 
 const initialState: InitialState = {
@@ -44,6 +91,8 @@ const initialState: InitialState = {
   topRatedLoading: false,
   upcoming: [],
   upcomingLoading: false,
+  movieDetails: null,
+  movieDetailsLoading: false,
 };
 
 export const movieSlice = createSlice({
@@ -77,6 +126,12 @@ export const movieSlice = createSlice({
     setUpcomingLoading: (state, action) => {
       state.upcomingLoading = action.payload;
     },
+    setMovieDetails: (state, action) => {
+      state.movieDetails = action.payload;
+    },
+    setMovieDetailsLoading: (state, action) => {
+      state.movieDetailsLoading = action.payload;
+    },
   },
 });
 
@@ -92,4 +147,6 @@ export const {
   setTopRatedLoading,
   setUpcoming,
   setUpcomingLoading,
+  setMovieDetails,
+  setMovieDetailsLoading,
 } = movieSlice.actions;

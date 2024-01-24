@@ -25,7 +25,7 @@ export default function ButtonIcon({
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.9}
-      className={`bg-secondary px-8 py-3 rounded-full ${
+      className={`bg-transparent w-[30px] h-[30px] justify-center items-center rounded-full ${
         containerClassName ?? ''
       }`}
       style={containerStyle}>

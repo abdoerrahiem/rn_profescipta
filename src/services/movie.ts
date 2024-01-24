@@ -2,6 +2,8 @@ import axios from 'axios';
 import {RootDispatch} from '~store';
 import {
   setGenres,
+  setMovieDetails,
+  setMovieDetailsLoading,
   setNowShowing,
   setNowShowingLoading,
   setPopular,
@@ -15,7 +17,7 @@ import {BASE_URL, MOVIE_HEADER_AXIOS} from '~utils/constant';
 
 export const getGenres = () => async (dispatch: RootDispatch) => {
   axios
-    .get(`${BASE_URL}/genre/movie/list?language=id`, MOVIE_HEADER_AXIOS)
+    .get(`${BASE_URL}/genre/movie/list?language=en`, MOVIE_HEADER_AXIOS)
     .then(res => dispatch(setGenres(res.data.genres)));
 };
 
@@ -26,7 +28,7 @@ export const getNowShowing =
 
     axios
       .get(
-        `${BASE_URL}/movie/now_playing?page=${page}&language=id`,
+        `${BASE_URL}/movie/now_playing?page=${page}&language=en`,
         MOVIE_HEADER_AXIOS,
       )
       .then(res => dispatch(setNowShowing(res.data.results)))
@@ -40,7 +42,7 @@ export const getPopular = (page: number) => async (dispatch: RootDispatch) => {
 
   axios
     .get(
-      `${BASE_URL}/movie/popular?page=${page}&language=id`,
+      `${BASE_URL}/movie/popular?page=${page}&language=en`,
       MOVIE_HEADER_AXIOS,
     )
     .then(res => dispatch(setPopular(res.data.results)))
@@ -54,7 +56,7 @@ export const getTopRated = (page: number) => async (dispatch: RootDispatch) => {
 
   axios
     .get(
-      `${BASE_URL}/movie/top_rated?page=${page}&language=id`,
+      `${BASE_URL}/movie/top_rated?page=${page}&language=en`,
       MOVIE_HEADER_AXIOS,
     )
     .then(res => dispatch(setTopRated(res.data.results)))
@@ -68,10 +70,25 @@ export const getUpcoming = (page: number) => async (dispatch: RootDispatch) => {
 
   axios
     .get(
-      `${BASE_URL}/movie/upcoming?page=${page}&language=id`,
+      `${BASE_URL}/movie/upcoming?page=${page}&language=en`,
       MOVIE_HEADER_AXIOS,
     )
     .then(res => dispatch(setUpcoming(res.data.results)))
     .catch(err => console.log('err get upcoming: ', err.response?.data))
     .finally(() => dispatch(setUpcomingLoading(false)));
 };
+
+export const getMovieDetails =
+  (id: number) => async (dispatch: RootDispatch) => {
+    dispatch(setMovieDetailsLoading(true));
+    dispatch(setMovieDetails(null));
+
+    axios
+      .get(
+        `${BASE_URL}/movie/${id}?language=en&append_to_response=credits,videos,release_dates`,
+        MOVIE_HEADER_AXIOS,
+      )
+      .then(res => dispatch(setMovieDetails(res.data)))
+      .catch(err => console.log('err get movie details: ', err.response?.data))
+      .finally(() => setMovieDetailsLoading(false));
+  };

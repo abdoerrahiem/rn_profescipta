@@ -4,13 +4,18 @@ import DefaultText from '~components/DefaultText';
 import Button from '~components/Button';
 
 interface HomeTopHeaderProps {
+  containerClassName?: string;
   title: string;
   onPress?: () => void;
 }
 
-export default function HomeTopHeader({title, onPress}: HomeTopHeaderProps) {
+export default function HomeTopHeader({
+  title,
+  containerClassName,
+  onPress,
+}: HomeTopHeaderProps) {
   return (
-    <View className="px-4 flex-row items-center">
+    <View className={`px-4 flex-row items-center ${containerClassName}`}>
       <DefaultText
         title={title}
         titleClassName="font-inter-semibold text-lg flex-1"
