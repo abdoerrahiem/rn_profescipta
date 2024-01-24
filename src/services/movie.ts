@@ -90,5 +90,5 @@ export const getMovieDetails =
       )
       .then(res => dispatch(setMovieDetails(res.data)))
       .catch(err => console.log('err get movie details: ', err.response?.data))
-      .finally(() => setMovieDetailsLoading(false));
+      .finally(() => dispatch(setMovieDetailsLoading(false)));
   };

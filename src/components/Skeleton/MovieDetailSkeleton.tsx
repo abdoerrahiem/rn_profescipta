@@ -1,0 +1,114 @@
+import React from 'react';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+
+export default function MovieDetailSkeleton() {
+  return (
+    <SkeletonPlaceholder>
+      <SkeletonPlaceholder.Item>
+        <SkeletonPlaceholder.Item
+          borderRadius={15}
+          height={20}
+          marginBottom={5}
+        />
+        <SkeletonPlaceholder.Item
+          borderRadius={15}
+          height={20}
+          width={100}
+          marginBottom={15}
+        />
+        <SkeletonPlaceholder.Item
+          borderRadius={15}
+          height={20}
+          width={150}
+          marginBottom={15}
+        />
+        <SkeletonPlaceholder.Item flexDirection="row" marginBottom={20}>
+          <SkeletonPlaceholder.Item
+            borderRadius={15}
+            height={20}
+            width={50}
+            marginRight={5}
+          />
+          <SkeletonPlaceholder.Item
+            borderRadius={15}
+            height={20}
+            width={50}
+            marginRight={5}
+          />
+          <SkeletonPlaceholder.Item
+            borderRadius={15}
+            height={20}
+            width={50}
+            marginRight={5}
+          />
+        </SkeletonPlaceholder.Item>
+        <SkeletonPlaceholder.Item flexDirection="row" marginBottom={20}>
+          <SkeletonPlaceholder.Item
+            borderRadius={5}
+            height={50}
+            width={50}
+            marginRight={15}
+            flex={1}
+          />
+          <SkeletonPlaceholder.Item
+            borderRadius={5}
+            height={50}
+            width={50}
+            marginRight={15}
+            flex={1}
+          />
+          <SkeletonPlaceholder.Item
+            borderRadius={5}
+            height={50}
+            width={50}
+            marginRight={15}
+            flex={1}
+          />
+        </SkeletonPlaceholder.Item>
+        <SkeletonPlaceholder.Item
+          borderRadius={15}
+          height={20}
+          width={70}
+          marginBottom={10}
+        />
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(item => (
+          <SkeletonPlaceholder.Item
+            key={item}
+            borderRadius={15}
+            height={15}
+            marginBottom={5}
+          />
+        ))}
+        <SkeletonPlaceholder.Item
+          marginTop={15}
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between">
+          <SkeletonPlaceholder.Item
+            borderRadius={15}
+            height={20}
+            width={70}
+            marginBottom={10}
+          />
+          <SkeletonPlaceholder.Item
+            borderRadius={15}
+            height={25}
+            width={70}
+            marginBottom={10}
+          />
+        </SkeletonPlaceholder.Item>
+        <SkeletonPlaceholder.Item flexDirection="row">
+          {[1, 2, 3].map(item => (
+            <SkeletonPlaceholder.Item
+              key={item}
+              borderRadius={6}
+              height={100}
+              width={100}
+              marginRight={10}
+            />
+          ))}
+        </SkeletonPlaceholder.Item>
+      </SkeletonPlaceholder.Item>
+    </SkeletonPlaceholder>
+  );
+}
